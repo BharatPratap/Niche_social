@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const User = require("../models/user");
+const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
 const getHash = async () => {
@@ -36,7 +36,7 @@ router.post("/register", async (req, res) => {
 //LOGIN
 router.post("/login", async (req, res) => {
     try {
-        const user = await User.findOne({ username: req.body.username || '' });
+        const user = await User.findOne({ email: req.body.email || '' });
 
         !user && res.status(404).send("user not found");
 
